@@ -8,3 +8,4 @@ chrono = "0.4.44"
 clap = { version = "4.5.60", features = ["derive"] }
 owo-colors = "4.3.0"
 strum = "0.28.0"
+tabled = "0.20.0"
