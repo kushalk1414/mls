@@ -17,11 +17,7 @@ fn main() {
     if let Ok(does_exist) = fs::exists(&path) {
         if does_exist {
             let files = get_files(&path);
-            let mut file_table = Table::new(files);
-            file_table.with(Style::rounded());
-            file_table.modify(Columns::first(), Color::FG_CYAN);
-            file_table.modify(Rows::first(), Color::FG_BRIGHT_GREEN);
-            println!("{file_table}");
+            print_table(files);
             
         } else {
             println!("{}", "provided path does not exist".red())
@@ -31,8 +27,16 @@ fn main() {
     }
 
 
+}
 
-
+fn print_table(files: Vec<FileMetadata>) {
+            let mut file_table = Table::new(files);
+            file_table.with(Style::rounded());
+            file_table.modify(Columns::first(), Color::FG_CYAN);
+            file_table.modify(Columns::one(2), Color::FG_BRIGHT_MAGENTA);
+            file_table.modify(Columns::one(3), Color::FG_YELLOW);
+            file_table.modify(Rows::first(), Color::FG_BRIGHT_GREEN);
+            println!("{file_table}");
 }
 
 fn get_files(path: &Path) -> Vec<FileMetadata> {
